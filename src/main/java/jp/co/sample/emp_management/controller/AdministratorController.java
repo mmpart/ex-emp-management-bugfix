@@ -78,8 +78,7 @@ public class AdministratorController {
 		//Eメール重複チェック
 		Administrator administrator1 = administratorService.findByMailAddress(form.getMailAddress());
 		if(administrator1 != null) {
-			String message = "存在するメールアドレスです";
-			result.rejectValue("mailAddress", null, message);
+			result.rejectValue("mailAddress", null, "既に存在するメールアドレスです");
 			return "administrator/insert";
 		}
 		Administrator administrator = new Administrator();
