@@ -83,4 +83,16 @@ public class EmployeeRepository {
 		String updateSql = "UPDATE employees SET dependents_count=:dependentsCount WHERE id=:id";
 		template.update(updateSql, param);
 	}
+	
+	public List<Employee> findAnbiguousByName(String name) {
+		StringBuilder sql = new StringBuilder();
+		sql.append("SELECT id,name,image,gender,hire_date,mail_address,zip_code,address,telephone,salary,characteristics,dependents_count ");
+		sql.append("FROM employees ");
+		sql.append("WHERE name LIKE :name ");
+		sql.append("ORDER BY hire_date DESC");
+		
+		SqlParameterSource param = new MapSqlParameterSource("name", "%" + name + "%");
+		
+		return template.query(sql.toString(), param, EMPLOYEE_ROW_MAPPER);
+	}
 }
