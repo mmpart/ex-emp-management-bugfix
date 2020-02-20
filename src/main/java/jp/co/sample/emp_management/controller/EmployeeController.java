@@ -53,6 +53,22 @@ public class EmployeeController {
 		return "employee/list";
 	}
 
+	@RequestMapping("/serch")
+	public String findAnbiguousByName(String serchtext,Model model) {
+		if(serchtext == null) {
+			String nothittext = "1件もありませんでした。";
+			model.addAttribute("nothittext", nothittext);
+			List<Employee> employeeList = employeeService.showList();
+			model.addAttribute("employeeList", employeeList);
+		} else if(serchtext.isEmpty()) {
+			List<Employee> employeeList = employeeService.showList();
+			model.addAttribute("employeeList", employeeList);
+		} else {
+			List<Employee>employeeList = employeeService.findAnbiguousByName(serchtext);
+			model.addAttribute("employeeList", employeeList);
+		}
+		return "employee/list";
+	}
 	
 	/////////////////////////////////////////////////////
 	// ユースケース：従業員詳細を表示する
@@ -92,4 +108,5 @@ public class EmployeeController {
 		employeeService.update(employee);
 		return "redirect:/employee/showList";
 	}
+	
 }

@@ -63,12 +63,13 @@
 <!-- ここから上を編集する必要はありません -->
 
 <!-- ここにモックのtable要素を貼り付けます -->
-			<form action="">
+			<form th:action="@{/employee/serch}" method="post">
 			<div >検索フォーム：
 			<input type="text" name="serchtext">
 			<button>検索</button>
 			</div>
 			</form><br>
+			<div th:if="${nothittext}" th:text="${nothittext}"></div>
 				<table class="table table-striped">
 					<thead>
 						<tr>
@@ -93,7 +94,7 @@
 						</tr>
 					</tbody>
 				</table>
-
+			
 
 <!-- ここから下を編集する必要はありません -->
 

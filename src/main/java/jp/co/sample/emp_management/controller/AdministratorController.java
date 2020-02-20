@@ -70,7 +70,7 @@ public class AdministratorController {
 	 * @return ログイン画面へリダイレクト
 	 */
 	@RequestMapping("/insert")
-	public String insert(@Validated InsertAdministratorForm form , BindingResult result) {
+	public String insert(@Validated InsertAdministratorForm form , BindingResult result,Model model) {
 		if(result.hasErrors()) {
 			return "administrator/insert";
 		}
@@ -78,8 +78,8 @@ public class AdministratorController {
 		Administrator administrator1 = administratorService.findByMailAddress(form.getMailAddress());
 		
 		if(administrator1 != null) {
-			FieldError fieldError = new FieldError(errormailmessage, field, "既に存在するメールアドレスです。");
-			result.addError(fieldError);
+			String message = "存在するメールアドレスです";
+			model.addAttribute("message", message);
 			return "administrator/insert";
 		}
 		Administrator administrator = new Administrator();
