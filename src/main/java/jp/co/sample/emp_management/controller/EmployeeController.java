@@ -55,18 +55,22 @@ public class EmployeeController {
 
 	@RequestMapping("/serch")
 	public String findAnbiguousByName(String serchtext,Model model) {
-		if(serchtext == null) {
-			String nothittext = "1件もありませんでした。";
-			model.addAttribute("nothittext", nothittext);
-			List<Employee> employeeList = employeeService.showList();
-			model.addAttribute("employeeList", employeeList);
-		} else if(serchtext.isEmpty()) {
+		if(serchtext.isEmpty()) {		//	空文字の場合
 			List<Employee> employeeList = employeeService.showList();
 			model.addAttribute("employeeList", employeeList);
 		} else {
 			List<Employee>employeeList = employeeService.findAnbiguousByName(serchtext);
 			model.addAttribute("employeeList", employeeList);
+			
+			if(employeeList == null) {
+				String nothittext = "1件もありませんでした。";
+				model.addAttribute("nothittext", nothittext);
+			}else {
+				List<Employee> employeeList1 = employeeService.showList();
+				model.addAttribute("employeeList", employeeList);
+			}
 		}
+		
 		return "employee/list";
 	}
 	
