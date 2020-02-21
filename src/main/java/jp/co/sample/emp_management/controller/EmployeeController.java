@@ -61,23 +61,21 @@ public class EmployeeController {
 	 */
 	@RequestMapping("/serch")
 	public String findAnbiguousByName(String serchtext,Model model) {
-		if(serchtext.isEmpty()) {		//	空文字の場合
-			List<Employee> employeeList = employeeService.showList();
-			model.addAttribute("employeeList", employeeList);
-		} else {								//曖昧検索-通常の曖昧検索
-			List<Employee>employeeList = employeeService.findAnbiguousByName(serchtext);
-			model.addAttribute("employeeList", employeeList);
-			
+		List<Employee>employeeList = employeeService.findAnbiguousByName(serchtext);
 			if(employeeList.size() == 0) {			//曖昧検索-検索結果が0件の場合
 				String nothittext = "1件もありませんでした。";
 				model.addAttribute("nothittext", nothittext);
-				List<Employee> employeeList1 = employeeService.showList();
-				model.addAttribute("employeeList", employeeList1);
+				
+				return showList(model);
+			} else {								//曖昧検索-通常の曖昧検索
+				model.addAttribute("employeeList", employeeList);
 			}
-		}
-		
 		return "employee/list";
 	}
+	
+//	public int add(int num1, int num2) {
+//		return num1+num2;
+//	}
 	
 	/////////////////////////////////////////////////////
 	// ユースケース：従業員詳細を表示する
