@@ -62,12 +62,11 @@ public class EmployeeController {
 			List<Employee>employeeList = employeeService.findAnbiguousByName(serchtext);
 			model.addAttribute("employeeList", employeeList);
 			
-			if(employeeList == null) {
+			if(employeeList.size() == 0) {
 				String nothittext = "1件もありませんでした。";
 				model.addAttribute("nothittext", nothittext);
-			}else {
 				List<Employee> employeeList1 = employeeService.showList();
-				model.addAttribute("employeeList", employeeList);
+				model.addAttribute("employeeList", employeeList1);
 			}
 		}
 		
