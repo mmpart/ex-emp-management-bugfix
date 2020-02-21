@@ -36,7 +36,7 @@ $(function(){
 		"十郎"
 	];
 	
-	$("#hogehoge").autocomplete({
+	$("#tags").autocomplete({
 		source: wordlist
 	});
 });
