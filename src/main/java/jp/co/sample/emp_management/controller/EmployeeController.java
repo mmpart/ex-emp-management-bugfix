@@ -64,11 +64,11 @@ public class EmployeeController {
 		if(serchtext.isEmpty()) {		//	空文字の場合
 			List<Employee> employeeList = employeeService.showList();
 			model.addAttribute("employeeList", employeeList);
-		} else {
+		} else {								//曖昧検索-通常の曖昧検索
 			List<Employee>employeeList = employeeService.findAnbiguousByName(serchtext);
 			model.addAttribute("employeeList", employeeList);
 			
-			if(employeeList.size() == 0) {
+			if(employeeList.size() == 0) {			//曖昧検索-検索結果が0件の場合
 				String nothittext = "1件もありませんでした。";
 				model.addAttribute("nothittext", nothittext);
 				List<Employee> employeeList1 = employeeService.showList();
