@@ -53,6 +53,12 @@ public class EmployeeController {
 		return "employee/list";
 	}
 
+	/**
+	 * 曖昧検索を行います.
+	 * @param serchtext 	検索文字
+	 * @param model リクエストスコープ
+	 * @return 従業員検索一覧結果画面
+	 */
 	@RequestMapping("/serch")
 	public String findAnbiguousByName(String serchtext,Model model) {
 		if(serchtext.isEmpty()) {		//	空文字の場合
