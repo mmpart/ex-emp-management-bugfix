@@ -69,7 +69,7 @@ public class AdministratorController {
 	 * @return ログイン画面へリダイレクト
 	 */
 	@RequestMapping("/insert")
-	public String insert(@Validated InsertAdministratorForm form , BindingResult result,Model model,String Confirmationpassword) {
+	public String insert(@Validated InsertAdministratorForm form , BindingResult result,Model model) {
 		
 		//Eメール重複チェック
 		Administrator administrator1 = administratorService.findByMailAddress(form.getMailAddress());
@@ -79,9 +79,7 @@ public class AdministratorController {
 		}
 		
 		//パスワード重複チェック
-		if(form.getPassword().equals(Confirmationpassword)) {
-			result.rejectValue("Confirmationpassword", null, "確認用パスワードOK！");
-		} else {
+		if(!(form.getPassword().equals(form.getConfirmationpassword()))) {
 			result.rejectValue("Confirmationpassword", null, "パスワードが一致しません");
 		}
 		
