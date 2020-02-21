@@ -83,14 +83,13 @@
 							<div class="form-group">
 								<div class="row">
 									<div class="col-sm-12">
-										<label for="passwaord">
+										<label for="Confirmationpassword">
 											確認用パスワード:
 										</label>
-										<label th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error-messages">
-											確認用パスワードを入力してください
-										</label>
-										<input type="password" name="password" id="password" class="form-control" placeholder="password"
-											 th:field="*{password}" th:errorclass="error-input" value="xxxxxxxx">
+										<label id="Confirmationpasswordmessageselect" style="color: red;">確認用パスワードOK！</label>
+										<label id="Confirmationpasswordmessageerror" style="color: red;">パスワードが一致しません</label>
+										<input type="password" name="Confirmationpassword" id="Confirmationpassword" class="form-control" placeholder="Confirmationpassword"
+											 >
 									</div>
 								</div>
 							</div>
@@ -115,6 +114,8 @@
 	<!-- end container -->
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script src="../../static/js/bootstrap.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script src="/js/insert.js"></script>
 </body>
 </html>
